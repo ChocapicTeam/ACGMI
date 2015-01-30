@@ -1,5 +1,7 @@
+package com.gestion;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -8,6 +10,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+import com.sqlite.GestionBD;
+import com.sqlite.SQLiteJDBC;
 
 public class TestExcel {
 
@@ -21,6 +26,19 @@ public class TestExcel {
 			IOException {
 		// TODO Auto-generated method stub
 
+	
+		try {
+			SQLiteJDBC.getConnexion();
+			GestionBD.creationTable();
+			GestionBD.initTableUE();
+			
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		//Fichier de sauvegarde des étudiants 
 		File fileEtu = new File(ficSauvEtudiant);
 		//Ouverture du fichier Excel 
@@ -91,6 +109,16 @@ public class TestExcel {
 
 			}
 			//e.sauvegarder(fileEtu);
+			try {
+				GestionBD.ajouterEtudiant(e);
+
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			lstEtudiant.add(e);
 		}
 
@@ -135,9 +163,18 @@ public class TestExcel {
 			}
 		}
 		
+		
+
 		//Affichage de la liste d'étudiants 
 		for (int i = 0; i < lstEtudiant.size(); i++) {
 			System.out.println(lstEtudiant.get(i).toString());
+			try {
+				GestionBD.ajouterLien(lstEtudiant.get(i));
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 
 	}

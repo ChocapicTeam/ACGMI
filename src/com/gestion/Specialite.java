@@ -1,3 +1,4 @@
+package com.gestion;
 
 public class Specialite {
 	String nom;

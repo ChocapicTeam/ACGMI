@@ -1,3 +1,4 @@
+package com.gestion;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,9 +10,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Etudiant implements Serializable {
+	
+	
 	private String numeroEtudiant;
 	private Specialite specialite;
-
 	private String prenom;
 	private String nom;
 	private ArrayList<UE> listeUE;
