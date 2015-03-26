@@ -9,11 +9,13 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.specialite.Specialite;
+
 public class Etudiant implements Serializable {
 	
 	
 	private String numeroEtudiant;
-	private Specialite specialite;
+	private String specialite;
 	private String prenom;
 	private String nom;
 	private ArrayList<UE> listeUE;
@@ -41,11 +43,11 @@ public class Etudiant implements Serializable {
 		this.prenom = prenom;
 	}
 
-	public Specialite getSpecialite() {
+	public String getSpecialite() {
 		return specialite;
 	}
 
-	public void setSpecialite(Specialite specialite) {
+	public void setSpecialite(String specialite) {
 		this.specialite = specialite;
 	}
 
@@ -73,14 +75,18 @@ public class Etudiant implements Serializable {
 		this.isRedoublant = isRedoublant;
 	}
 
-	public String toString() {
-		String result = nom + " " + prenom + " " + specialite.getNom() + " "
-				+ mailPerso + " " + isRedoublant + " " + numeroEtudiant + " ";
+	public String toString() {		
+		StringBuffer result = new StringBuffer();
+		result.append("numEtu: " + numeroEtudiant);
+		result.append(" nom: " + nom);
+		result.append(" prenom: " + prenom);
+		result.append(" specialite: " + specialite);
+		result.append(" redoublant: " + isRedoublant + "\n");
+		
 		for (int i = 0; i < listeUE.size(); i++) {
-			result += listeUE.get(i) + " ";
+			result.append(listeUE.get(i));
 		}
-
-		return result;
+		return result.toString();
 	}
 
 	public ArrayList<UE> getListeUE() {
