@@ -15,7 +15,8 @@ public class Etudiant implements Serializable {
 	
 	
 	private String numeroEtudiant;
-	private String specialite;
+	//private String specialite;
+	private Specialite specialite;
 	private String prenom;
 	private String nom;
 	private ArrayList<UE> listeUE;
@@ -43,14 +44,14 @@ public class Etudiant implements Serializable {
 		this.prenom = prenom;
 	}
 
-	public String getSpecialite() {
+	/*public String getSpecialite() {
 		return specialite;
 	}
 
 	public void setSpecialite(String specialite) {
 		this.specialite = specialite;
 	}
-
+*/
 	public String getNom() {
 		return nom;
 	}
