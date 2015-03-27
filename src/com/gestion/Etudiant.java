@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import com.specialite.Specialite;
 
-public class Etudiant implements Serializable {
+public class Etudiant  {
 	
 	
 	private String numeroEtudiant;
@@ -96,51 +96,4 @@ public class Etudiant implements Serializable {
 	public void setListeUE(ArrayList<UE> listeUE) {
 		this.listeUE = listeUE;
 	}
-
-	
-	public void sauvegarder(File file) {
-		ObjectOutputStream oos = null;
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(file);
-			oos = new ObjectOutputStream(fos);
-			oos.writeObject(this);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				oos.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-	}
-
-	public static Etudiant charger(File file) {
-		ObjectInputStream ois = null;
-		FileInputStream fis = null;
-		try {
-			fis = new FileInputStream(file);
-			ois = new ObjectInputStream(fis);
-			return ((Etudiant) ois.readObject());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				ois.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return null;
-	}
-
 }
