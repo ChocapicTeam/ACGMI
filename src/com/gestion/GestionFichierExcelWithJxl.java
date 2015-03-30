@@ -106,11 +106,10 @@ public class GestionFichierExcelWithJxl {
 
 			lstEtudiant.add(e);
 		}
-		System.out.println(lstEtudiant.toString());
+		//System.out.println(lstEtudiant.toString());
 
 		// Initialiosation des liste des liste d'UEs pour chaque etudiants
 		for (int i = 1; i < lastRowNum; i++) {
-			System.out.println(speDebut.toString() + " aquiiieeeeuuuuuuuuuuuuiiiiiii");
 			int debutUE = speDebut.get(lstEtudiant.get(i-1).getSpecialite().toLowerCase());
 			int nbUELus = 0;
 			int nbUERedouLus = 0;
@@ -221,18 +220,36 @@ public class GestionFichierExcelWithJxl {
 			final ArrayList<Etudiant> listeEtu  = GestionBD.recupererEtudiants();
 
 			TreeMap<String, ArrayList<Etudiant>> listEtuByUE = GestionBD.getEtudiantsPerUE(listeEtu);
-            System.out.println(listEtuByUE.toString());
 
 
-			WorkbookSettings wbSettings = new WorkbookSettings();
-		    wbSettings.setLocale(new Locale("fr", "FR"));
 
-		    WritableWorkbook workbook;
-				File fileToSave;
-				fileToSave = new File( "testOut.xls");
-				workbook = Workbook.createWorkbook(fileToSave, wbSettings);
-				WriteExcel test = new WriteExcel();
-				test.write(workbook, listeEtu, listEtuByUE);
+            try {
+                listEtuByUE = GestionBD.getEtudiantsPerUE(listeEtu);
+                File fileToSave = null;
+                fileToSave = new File("newouttest.xls");
+                WritableWorkbook workbook;
+                WorkbookSettings wbSettings = new WorkbookSettings();
+
+                wbSettings.setLocale(new Locale("fr", "FR"));
+
+                workbook = Workbook.createWorkbook(fileToSave, wbSettings);
+                String s = fileToSave.toString();
+                WriteExcel test = new WriteExcel();
+                //test.setOutputFile(s+".xls");
+                test.write(workbook, listeEtu, listEtuByUE);
+            } catch (WriteException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
 		
 				
 		} catch (IOException | ClassNotFoundException | SQLException | OldExcelFormatException e) {
