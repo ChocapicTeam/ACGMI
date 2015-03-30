@@ -32,7 +32,7 @@ public void setOutputFile(String inputFile) {
     createLabelSheet1(sheet1);
     createContentSheet1(sheet1, listeEtu);
       WritableSheet sheet3 = workbook.getSheet(1);
-      createLabelSheet3(sheet3, listeEtu);
+      //createLabelSheet3(sheet3, listeEtu);
     
     int i = 2;
     for (Entry<String, ArrayList<Etudiant>> entry : listEtuByUE.entrySet()) {
@@ -268,53 +268,9 @@ private void sheetAutoFitColumns(WritableSheet sheet) {
           }
       }
 
-    private void createContentSheet3(WritableSheet sheet, List<Etudiant> listeEtu) throws WriteException, SQLException, ClassNotFoundException {
+    private void createContentSheet3(WritableSheet sheet, TreeMap<String, ArrayList<Etudiant>> listeEtuByUE ) throws WriteException, SQLException, ClassNotFoundException {
 
 
-        ArrayList<String> listeUE = new ArrayList<>();
-        listeUE = GestionBD.get
-        TreeMap<String, Integer> nbEtuInscits = new TreeMap<>();
-        for (Entry<String, ArrayList<Etudiant>> entry : listEtuByUE.entrySet()) {
-            listeUE.add(entry.getKey());
-        }
-
-        for (Entry<String, ArrayList<Etudiant>> entry : listEtuByUE.entrySet()) {
-
-            String numero = etu.getNumero();
-            listeUE = GestionBD.getUeEtudiant(numero);
-            for (UE ue : listeUE) {
-                if (ue.getType().equals(UE.types.IMPOSEE))
-                    listeImpo.add(ue);
-                else if (ue.getType().equals(UE.types.COMMUN))
-                    listeCommun.add(ue);
-                else
-                    listeChoix.add(ue);
-            }
-
-            addLabel(sheet, 0, i, etu.getNom());
-            addLabel(sheet, 1, i, etu.getPrenom());
-            addLabel(sheet, 2, i, etu.getMailPerso());
-            addLabel(sheet, 3, i, etu.getSpecialite());
-            addLabel(sheet, 4, i, etu.isRedoublant() ? "Oui" : "Non");
-            addLabel(sheet, 5, i, etu.getNumero());
-
-            addLabel(sheet, 6, i, listeCommun.get(0).isValide() ? listeCommun.get(0).getNom() + " admis" : listeCommun.get(0).getNom());
-            addLabel(sheet, 7, i, listeCommun.get(1).isValide() ? listeCommun.get(1).getNom() + " admis" : listeCommun.get(1).getNom());
-            addLabel(sheet, 8, i, listeImpo.get(0).isValide() ? listeImpo.get(0).getNom() + " admis" : listeImpo.get(0).getNom());
-            addLabel(sheet, 9, i, listeImpo.get(1).isValide() ? listeImpo.get(1).getNom() + " admis" : listeImpo.get(1).getNom());
-            addLabel(sheet, 10, i, listeImpo.get(2).isValide() ? listeImpo.get(2).getNom() + " admis" : listeImpo.get(2).getNom());
-            addLabel(sheet, 11, i, listeImpo.get(3).isValide() ? listeImpo.get(3).getNom() + " admis" : listeImpo.get(3).getNom());
-            addLabel(sheet, 12, i, listeChoix.get(0).isValide() ? listeChoix.get(0).getNom() + " admis" : listeChoix.get(0).getNom());
-            addLabel(sheet, 13, i, listeChoix.get(1).isValide() ? listeChoix.get(1).getNom() + " admis" : listeChoix.get(1).getNom());
-            addLabel(sheet, 14, i, listeChoix.get(2).isValide() ? listeChoix.get(2).getNom() + " admis" : listeChoix.get(2).getNom());
-            System.out.println(etu.toString());
-            addLabel(sheet, 15, i, listeChoix.get(3).isValide() ? listeChoix.get(3).getNom() + " admis" : listeChoix.get(3).getNom());
-
-            listeImpo.clear();
-            listeChoix.clear();
-            listeCommun.clear();
-            i++;
-        }
     }
 
   

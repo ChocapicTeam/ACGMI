@@ -143,11 +143,11 @@ public class GestionBD {
 	}
 
 
-    public static ArrayList<Etudiant> recupererUe() throws SQLException,
+    public static ArrayList<String> recupererUe() throws SQLException,
             ClassNotFoundException {
         Connection connection = null;
         Statement statement = null;
-        ArrayList<UE> listeUe = new ArrayList<>();
+        ArrayList<String> listeUe = new ArrayList<>();
 
         try {
             connection = (Connection) SQLiteJDBC.getConnexion();
@@ -155,31 +155,15 @@ public class GestionBD {
             // execute select SQL stetement
             ResultSet rs = statement
                     .executeQuery("SELECT nomue from UE");
-
             while (rs.next()) {
-                Etudiant e = new Etudiant();
-                e.setNom(rs.getString("nom"));
-                e.setPrenom(rs.getString("prenom"));
-                e.setMailPerso(rs.getString("mail"));
-                e.setNumero(String.valueOf(rs.getInt("numeroEtudiant")));
-
-                e.setSpecialite(rs.getString("specialite"));
-                if (rs.getInt("redoublant") == 0) {
-                    e.setRedoublant(false);
-                } else {
-                    e.setRedoublant(true);
-                }
-                listeEtudiant.add(e);
+                listeUe.add(rs.getString("nomue"));
             }
-
         }
-
         finally {
             SQLiteJDBC.close(statement);
             SQLiteJDBC.close(connection);
         }
-
-        return listeEtudiant;
+        return listeUe;
 
     }
 
