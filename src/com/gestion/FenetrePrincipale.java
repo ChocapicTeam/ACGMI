@@ -298,9 +298,16 @@ public class FenetrePrincipale extends JFrame {
 			
 			
 			try  {
-				GestionFichierExcelWithPoi.dataBaseCreation();
-				GestionFichierExcelWithPoi.ouvertureFichier(selectedFile.getAbsolutePath());
-				listeEtu  = GestionBD.recupererEtudiants();
+				/*GestionFichierExcelWithPoi.dataBaseCreation();
+				GestionFichierExcelWithPoi.ouvertureFichier(selectedFile.getAbsolutePath());*/
+                GestionFichierExcelWithJxl.dataBaseCreation();
+                try {
+                    GestionFichierExcelWithJxl.ouvertureFichier(selectedFile.getAbsolutePath());
+                } catch (BiffException e) {
+                    e.printStackTrace();
+                }
+
+                listeEtu  = GestionBD.recupererEtudiants();
 			} catch (OldExcelFormatException e) {
 				try {
 					GestionFichierExcelWithJxl.dataBaseCreation();
@@ -310,7 +317,7 @@ public class FenetrePrincipale extends JFrame {
 					e1.printStackTrace();
 				}
 				
-			} catch (ClassNotFoundException | SQLException | InvalidFormatException | IOException e) {
+			} catch (ClassNotFoundException | SQLException | IOException e) {
 				e.printStackTrace();
 			}
 			
