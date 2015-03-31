@@ -165,7 +165,6 @@ private void sheetAutoFitColumns(WritableSheet sheet) {
     	addLabel(sheet, 12, i, listeChoix.get(0).isValide()? listeChoix.get(0).getNom() + " admis" : listeChoix.get(0).getNom());
     	addLabel(sheet, 13, i, listeChoix.get(1).isValide()? listeChoix.get(1).getNom() + " admis" : listeChoix.get(1).getNom());
     	addLabel(sheet, 14, i, listeChoix.get(2).isValide()? listeChoix.get(2).getNom() + " admis" : listeChoix.get(2).getNom());
-        System.out.println(etu.toString());
     	addLabel(sheet, 15, i, listeChoix.get(3).isValide() ? listeChoix.get(3).getNom() + " admis" : listeChoix.get(3).getNom());
     	
     	listeImpo.clear();
@@ -233,7 +232,6 @@ private void sheetAutoFitColumns(WritableSheet sheet) {
           addLabel(sheet, 12, i, listeChoix.get(0).isValide() ? listeChoix.get(0).getNom() + " admis" : listeChoix.get(0).getNom());
           addLabel(sheet, 13, i, listeChoix.get(1).isValide() ? listeChoix.get(1).getNom() + " admis" : listeChoix.get(1).getNom());
           addLabel(sheet, 14, i, listeChoix.get(2).isValide() ? listeChoix.get(2).getNom() + " admis" : listeChoix.get(2).getNom());
-          System.out.println(etu.toString());
           addLabel(sheet, 15, i, listeChoix.get(3).isValide() ? listeChoix.get(3).getNom() + " admis" : listeChoix.get(3).getNom());
 
           listeImpo.clear();

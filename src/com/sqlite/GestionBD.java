@@ -17,28 +17,30 @@ public class GestionBD {
 
 	public static void creationTable() throws SQLException,
 			ClassNotFoundException {
-		Connection connection = (Connection) SQLiteJDBC.getConnexion();
-		Statement statement = (Statement) connection.createStatement();
+		Connection connection = SQLiteJDBC.getConnexion();
+		Statement statement = connection.createStatement();
 		// crÈation des 2 tables,si elles existaient deja, une SQLException
 		// sera alors lancee
 		// par jdbc. On attrape l'erreur dans le bloc catch.
 		try {
-
 			statement.executeUpdate("DROP TABLE IF EXISTS etudiant ");
 			statement.executeUpdate("DROP TABLE IF EXISTS lien ");
 			statement.executeUpdate("DROP TABLE IF EXISTS ue ");
 
 			statement
 					.executeUpdate("CREATE TABLE IF NOT EXISTS etudiant "
-							+ "(numeroEtudiant INTEGER PRIMARY KEY, nom VARCHAR(25) , prenom VARCHAR(25) ,"
-							+ "mail VARCHAR(40) ,  specialite VARCHAR(10), redoublant INTEGER not NULL)");
+							+ "(numeroEtudiant INTEGER UNIQUE, nom VARCHAR(25) , prenom VARCHAR(25) ,"
+							+ "mail VARCHAR(40) ,  specialite VARCHAR(10), redoublant INTEGER not NULL," +
+                            " PRIMARY KEY(numeroEtudiant, nom, prenom))");
 
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS ue "
 					+ "(id INTEGER PRIMARY KEY,nomue VARCHAR(10))");
 
 			statement
 					.executeUpdate("CREATE TABLE IF NOT EXISTS lien "
-							+ "(numetu INTEGER, idue VARCHAR(10), type VARCHAR(20), valide INTEGER, primary key(numetu,idue))");
+                            + "(numetu INTEGER, idue VARCHAR(10), type VARCHAR(20), valide INTEGER, primary key(numetu,idue))");
+            statement.executeUpdate("CREATE unique INDEX ind" +
+                    " on lien (numetu, idue);");
 		}
 
 		catch (SQLException exp) {
@@ -56,22 +58,27 @@ public class GestionBD {
 		PreparedStatement statementEtudiant = null;
 		try {
 			// Ajout d'un etudiant dans la base de donnée
-			connection = (Connection) SQLiteJDBC.getConnexion();
+			connection = SQLiteJDBC.getConnexion();
+            connection.setAutoCommit(false);
+            statementEtudiant = connection
+                    .prepareStatement("INSERT or replace INTO etudiant(numeroEtudiant,nom,prenom,mail,specialite,redoublant) VALUES (?,?,?,?,?,?)");
             for(int i=0; i<liteEtu.size();i++) {
-                statementEtudiant = (PreparedStatement) connection
-                        .prepareStatement("INSERT INTO etudiant(numeroEtudiant,nom,prenom,mail,specialite,redoublant) VALUES (?,?,?,?,?,?)");
                 statementEtudiant.setInt(1, Integer.parseInt(liteEtu.get(i).getNumero()));
                 statementEtudiant.setString(2, liteEtu.get(i).getNom());
                 statementEtudiant.setString(3, liteEtu.get(i).getPrenom());
                 statementEtudiant.setString(4, liteEtu.get(i).getMailPerso());
                 statementEtudiant.setString(5, liteEtu.get(i).getSpecialite());
-                if (liteEtu.get(i).isRedoublant()) {
+                statementEtudiant.setBoolean(6, liteEtu.get(i).isRedoublant());
+                /*if (liteEtu.get(i).isRedoublant()) {
                     statementEtudiant.setInt(6, 1);
                 } else {
                     statementEtudiant.setInt(6, 0);
                 }
-                statementEtudiant.executeUpdate();
+                statementEtudiant.executeUpdate();*/
+                statementEtudiant.addBatch();
             }
+            statementEtudiant.executeBatch();
+            connection.commit();
 		} finally {
 			SQLiteJDBC.close(statementEtudiant);
 			SQLiteJDBC.close(connection);
@@ -84,11 +91,14 @@ public class GestionBD {
 		PreparedStatement statementLien = null;
 
 		try {
-                connection = (Connection) SQLiteJDBC.getConnexion();
-                statementLien = (PreparedStatement) connection
-                    .prepareStatement("INSERT INTO lien(numetu,idue, type, valide) VALUES (?,?,?,?)");
+                connection = SQLiteJDBC.getConnexion();
+                connection.setAutoCommit(false);
+            statementLien = connection
+                    .prepareStatement("INSERT or replace INTO lien(numetu,idue, type, valide) VALUES (?,?,?,?)");
+
             for (Etudiant etu : listeEtudiant) {
                 for (UE ue : etu.getListeUE()) {
+                    //statementLien.clearParameters();
                     statementLien.setInt(1, Integer.parseInt(etu.getNumero()));
                     statementLien.setString(2, ue
                             .getNom().toUpperCase());
@@ -100,7 +110,8 @@ public class GestionBD {
                 }
             }
             statementLien.executeBatch();
-		} finally {
+            connection.commit();
+        } finally {
 			SQLiteJDBC.close(statementLien);
 			SQLiteJDBC.close(connection);
 		}
@@ -215,16 +226,18 @@ public class GestionBD {
 		try {
 
 			// Ajout de l'id Etudiant et du nom de l'Ue dans la table UE
-			connection = (Connection) SQLiteJDBC.getConnexion();
-
-			for (int i = 0; i < tabUe.length; i++) {
-				statement = (PreparedStatement) connection
-						.prepareStatement("INSERT INTO ue(id,nomue) VALUES (?,?)");
+			connection = SQLiteJDBC.getConnexion();
+            connection.setAutoCommit(false);
+            statement =connection
+                    .prepareStatement("INSERT INTO ue(id,nomue) VALUES (?,?)");
+            for (int i = 0; i < tabUe.length; i++) {
 				statement.setInt(1, i + 1);
 				statement.setString(2, tabUe[i]);
-				statement.executeUpdate();
+				//statement.executeUpdate();
+                statement.addBatch();
 			}
-
+            statement.executeBatch();
+            connection.commit();
 		}
 
 		finally {
@@ -331,7 +344,7 @@ public class GestionBD {
 				+ " AND e.specialite IN (" + attr.toString() + ')';
 
 		try {
-			connection = (Connection) SQLiteJDBC.getConnexion();
+			connection = SQLiteJDBC.getConnexion();
 			stmt = connection.createStatement();
 
 			ResultSet rs = stmt.executeQuery(req);
