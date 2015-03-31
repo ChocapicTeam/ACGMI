@@ -32,7 +32,7 @@ public class GestionFichierExcelWithPoi {
 			throws InvalidFormatException, IOException, ClassNotFoundException, SQLException {
 		ArrayList<UE> lstUE = new ArrayList<UE>();
 		ArrayList<Etudiant> lstEtudiant = new ArrayList<Etudiant>();
-		int indDebutUE = 8;
+		int indDebutUE = 8 + 6;
 
 		HashMap<String, Integer> speDebut = new HashMap<>();
 
@@ -51,7 +51,7 @@ public class GestionFichierExcelWithPoi {
 			Cell cell = row.getCell(i);
 			lstUE.add(new UE(UE.getType(cell.getStringCellValue()), UE
 					.parseNomUE(cell.getStringCellValue())));
-			if (speDebut.containsKey(parseSpe(cell.getStringCellValue())))
+			if (!speDebut.containsKey(parseSpe(cell.getStringCellValue())))
 				speDebut.put(parseSpe(cell.getStringCellValue()), i);
 			//speDebut.putIfAbsent(parseSpe(cell.getStringCellValue()), i);
 		}
@@ -61,14 +61,14 @@ public class GestionFichierExcelWithPoi {
 		for (int i = 1; i < lastRowNum; i++) {
 			row = sh.getRow(i);
 			Etudiant e = new Etudiant();
-			e.setNom(row.getCell(0).getStringCellValue());
-			e.setPrenom(row.getCell(1).getStringCellValue());
-			e.setNumero(String.valueOf((int) row.getCell(2)
+			e.setNom(row.getCell(0+6).getStringCellValue());
+			e.setPrenom(row.getCell(1+6).getStringCellValue());
+			e.setNumero(String.valueOf((int) row.getCell(2+6)
 					.getNumericCellValue()));
-			e.setMailPerso(row.getCell(3).getStringCellValue());
-			e.setSpecialite(row.getCell(4).getStringCellValue().trim());
+			e.setMailPerso(row.getCell(3+6).getStringCellValue());
+			e.setSpecialite(row.getCell(4+6).getStringCellValue().trim());
 
-			if (row.getCell(5).getStringCellValue().trim().toLowerCase()
+			if (row.getCell(5+6).getStringCellValue().trim().toLowerCase()
 					.equals("y")) {
 				e.setRedoublant(true);
 			} else {

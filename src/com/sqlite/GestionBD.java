@@ -82,24 +82,24 @@ public class GestionBD {
 			ClassNotFoundException {
 		Connection connection = null;
 		PreparedStatement statementLien = null;
+
 		try {
                 connection = (Connection) SQLiteJDBC.getConnexion();
-            for (int j=0; j<listeEtudiant.size();j++) {
-                // Ajout dans la table lien (etudiant / nom Ue )
-                for (int i = 0; i < listeEtudiant.get(j).getListeUE().size(); i++) {
-
-                    statementLien = (PreparedStatement) connection
-                            .prepareStatement("INSERT INTO lien(numetu,idue, type, valide) VALUES (?,?,?,?)");
-                    statementLien.setInt(1, Integer.parseInt(listeEtudiant.get(j).getNumero()));
-                    statementLien.setString(2, listeEtudiant.get(j).getListeUE().get(i)
+                statementLien = (PreparedStatement) connection
+                    .prepareStatement("INSERT INTO lien(numetu,idue, type, valide) VALUES (?,?,?,?)");
+            for (Etudiant etu : listeEtudiant) {
+                for (UE ue : etu.getListeUE()) {
+                    statementLien.setInt(1, Integer.parseInt(etu.getNumero()));
+                    statementLien.setString(2, ue
                             .getNom().toUpperCase());
-                    statementLien.setString(3, listeEtudiant.get(j).getListeUE().get(i)
+                    statementLien.setString(3, ue
                             .getType().toString());
-                    statementLien.setBoolean(4, listeEtudiant.get(j).getListeUE().get(i)
+                    statementLien.setBoolean(4, ue
                             .isValide());
-                    statementLien.executeUpdate();
+                    statementLien.addBatch();
                 }
             }
+            statementLien.executeBatch();
 		} finally {
 			SQLiteJDBC.close(statementLien);
 			SQLiteJDBC.close(connection);
