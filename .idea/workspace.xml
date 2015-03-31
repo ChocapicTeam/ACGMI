@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5da217b-220e-4852-9b9b-a5a3d7608a91" name="Default" comment="commit ed 2">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newouttest.xls" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results2.ods" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.~lock.results2.xls#" />
+    <list default="true" id="c5da217b-220e-4852-9b9b-a5a3d7608a91" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gestion.db" afterPath="$PROJECT_DIR$/gestion.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sqlite/GestionBD.java" afterPath="$PROJECT_DIR$/src/com/sqlite/GestionBD.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gestion/WriteExcel.java" afterPath="$PROJECT_DIR$/src/com/gestion/WriteExcel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gestion/GestionFichierExcelWithJxl.java" afterPath="$PROJECT_DIR$/src/com/gestion/GestionFichierExcelWithJxl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gestion/GestionFichierExcelWithPoi.java" afterPath="$PROJECT_DIR$/src/com/gestion/GestionFichierExcelWithPoi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ProjetGestionGroupe.iws" />
@@ -37,8 +35,8 @@
       <file leaf-file-name="FenetrePrincipale.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/gestion/FenetrePrincipale.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2574" max-vertical-offset="7272">
-              <caret line="147" column="35" selection-start-line="147" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.7115386" vertical-offset="2361" max-vertical-offset="7272">
+              <caret line="148" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#7425#7512#0" expanded="true" />
@@ -88,20 +86,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GestionFichierExcelWithJxl.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GestionFichierExcelWithJxl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/gestion/GestionFichierExcelWithJxl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3586" max-vertical-offset="4320">
-              <caret line="238" column="0" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
+            <state vertical-scroll-proportion="-1.1081082" vertical-offset="3876" max-vertical-offset="4428">
+              <caret line="218" column="13" selection-start-line="218" selection-start-column="13" selection-end-line="218" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WriteExcel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GestionFichierExcelWithPoi.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/gestion/GestionFichierExcelWithPoi.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-29.161291" vertical-offset="1328" max-vertical-offset="4374">
+              <caret line="124" column="41" selection-start-line="124" selection-start-column="41" selection-end-line="124" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WriteExcel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/gestion/WriteExcel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5406032" vertical-offset="3169" max-vertical-offset="6264">
+            <state vertical-scroll-proportion="78.41936" vertical-offset="5833" max-vertical-offset="6264">
               <caret line="189" column="14" selection-start-line="189" selection-start-column="14" selection-end-line="189" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -115,24 +125,24 @@
       <file leaf-file-name="GestionBD.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/sqlite/GestionBD.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3035" max-vertical-offset="7470">
-              <caret line="189" column="40" selection-start-line="189" selection-start-column="40" selection-end-line="189" selection-end-column="40" />
+            <state vertical-scroll-proportion="-1.1290323" vertical-offset="1747" max-vertical-offset="7542">
+              <caret line="110" column="56" selection-start-line="110" selection-start-column="38" selection-end-line="110" selection-end-column="56" />
               <folding>
-                <marker date="1427804626674" expanded="true" signature="730:759" placeholder="DROP TABLE I..." />
-                <marker date="1427804626674" expanded="true" signature="792:817" placeholder="DROP TABLE I..." />
-                <marker date="1427804626674" expanded="true" signature="850:873" placeholder="DROP TABLE I..." />
-                <marker date="1427804626674" expanded="true" signature="913:1120" placeholder="CREATE TABLE..IF..." />
-                <marker date="1427804626674" expanded="true" signature="1153:1235" placeholder="CREATE TABLE..IF..." />
-                <marker date="1427804626674" expanded="true" signature="1274:1412" placeholder="CREATE TABLE..IF..." />
-                <marker date="1427804626674" expanded="true" signature="1937:2032" placeholder="INSERT INTO ..." />
-                <marker date="1427804626674" expanded="true" signature="3023:3083" placeholder="INSERT INTO ..." />
-                <marker date="1427804626674" expanded="true" signature="4021:4063" placeholder="SELECT * fro..Etudiant..." />
-                <marker date="1427804626674" expanded="true" signature="5106:5126" placeholder="SELECT nomue..UE..." />
-                <marker date="1427804626674" expanded="true" signature="5889:6104" placeholder="SELECT disti..ue..." />
-                <marker date="1427804626674" expanded="true" signature="7026:7063" placeholder="INSERT INTO ..." />
-                <marker date="1427804626674" expanded="true" signature="7755:7804" placeholder="SELECT idue,..lien..." />
-                <marker date="1427804626674" expanded="true" signature="8956:8984" placeholder="SELECT * fro..ue..." />
-                <marker date="1427804626674" expanded="true" signature="9892:10134" placeholder="SELECT e.num..etudiant..." />
+                <marker date="1427806294770" expanded="true" signature="753:782" placeholder="DROP TABLE I..." />
+                <marker date="1427806294770" expanded="true" signature="815:840" placeholder="DROP TABLE I..." />
+                <marker date="1427806294770" expanded="true" signature="873:896" placeholder="DROP TABLE I..." />
+                <marker date="1427806294770" expanded="true" signature="936:1143" placeholder="CREATE TABLE..IF..." />
+                <marker date="1427806294770" expanded="true" signature="1176:1258" placeholder="CREATE TABLE..IF..." />
+                <marker date="1427806294770" expanded="true" signature="1297:1435" placeholder="CREATE TABLE..IF..." />
+                <marker date="1427806294770" expanded="true" signature="2046:2141" placeholder="INSERT INTO ..." />
+                <marker date="1427806294770" expanded="true" signature="3487:3547" placeholder="INSERT INTO ..." />
+                <marker date="1427806294770" expanded="true" signature="4705:4747" placeholder="SELECT * fro..Etudiant..." />
+                <marker date="1427806294770" expanded="true" signature="5790:5810" placeholder="SELECT nomue..UE..." />
+                <marker date="1427806294770" expanded="true" signature="6573:6788" placeholder="SELECT disti..ue..." />
+                <marker date="1427806294770" expanded="true" signature="7710:7747" placeholder="INSERT INTO ..." />
+                <marker date="1427806294770" expanded="true" signature="8439:8488" placeholder="SELECT idue,..lien..." />
+                <marker date="1427806294770" expanded="true" signature="9640:9668" placeholder="SELECT * fro..ue..." />
+                <marker date="1427806294770" expanded="true" signature="10576:10818" placeholder="SELECT e.num..etudiant..." />
               </folding>
             </state>
           </provider>
@@ -148,9 +158,10 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/gestion/Etudiant.java" />
         <option value="$PROJECT_DIR$/src/TestJXL.java" />
+        <option value="$PROJECT_DIR$/src/com/gestion/WriteExcel.java" />
         <option value="$PROJECT_DIR$/src/com/gestion/GestionFichierExcelWithJxl.java" />
         <option value="$PROJECT_DIR$/src/com/sqlite/GestionBD.java" />
-        <option value="$PROJECT_DIR$/src/com/gestion/WriteExcel.java" />
+        <option value="$PROJECT_DIR$/src/com/gestion/GestionFichierExcelWithPoi.java" />
       </list>
     </option>
   </component>
@@ -591,7 +602,7 @@
       <updated>1427376167268</updated>
       <workItem from="1427376318086" duration="4106000" />
       <workItem from="1427705728675" duration="3918000" />
-      <workItem from="1427730887917" duration="4529000" />
+      <workItem from="1427730887917" duration="5988000" />
     </task>
     <task id="LOCAL-00001" summary="big commit">
       <created>1427376680256</created>
@@ -635,11 +646,17 @@
       <option name="project" value="LOCAL" />
       <updated>1427731754923</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="commit ed 2">
+      <created>1427805002794</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1427805002794</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12553000" />
+    <option name="totallyTimeSpent" value="14012000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -711,7 +728,8 @@
     </option>
     <MESSAGE value="big commit" />
     <MESSAGE value="commit ed" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit ed" />
+    <MESSAGE value="commit ed 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit ed 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -795,21 +813,21 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7290">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1427804626674" expanded="true" signature="730:759" placeholder="DROP TABLE I..." />
-            <marker date="1427804626674" expanded="true" signature="792:817" placeholder="DROP TABLE I..." />
-            <marker date="1427804626674" expanded="true" signature="850:873" placeholder="DROP TABLE I..." />
-            <marker date="1427804626674" expanded="true" signature="913:1120" placeholder="CREATE TABLE..IF..." />
-            <marker date="1427804626674" expanded="true" signature="1153:1235" placeholder="CREATE TABLE..IF..." />
-            <marker date="1427804626674" expanded="true" signature="1274:1412" placeholder="CREATE TABLE..IF..." />
-            <marker date="1427804626674" expanded="true" signature="1937:2032" placeholder="INSERT INTO ..." />
-            <marker date="1427804626674" expanded="true" signature="3023:3083" placeholder="INSERT INTO ..." />
-            <marker date="1427804626674" expanded="true" signature="4021:4063" placeholder="SELECT * fro..Etudiant..." />
-            <marker date="1427804626674" expanded="true" signature="5106:5126" placeholder="SELECT nomue..UE..." />
-            <marker date="1427804626674" expanded="true" signature="5889:6104" placeholder="SELECT disti..ue..." />
-            <marker date="1427804626674" expanded="true" signature="7026:7063" placeholder="INSERT INTO ..." />
-            <marker date="1427804626674" expanded="true" signature="7755:7804" placeholder="SELECT idue,..lien..." />
-            <marker date="1427804626674" expanded="true" signature="8956:8984" placeholder="SELECT * fro..ue..." />
-            <marker date="1427804626674" expanded="true" signature="9892:10134" placeholder="SELECT e.num..etudiant..." />
+            <marker date="1427806294770" expanded="true" signature="753:782" placeholder="DROP TABLE I..." />
+            <marker date="1427806294770" expanded="true" signature="815:840" placeholder="DROP TABLE I..." />
+            <marker date="1427806294770" expanded="true" signature="873:896" placeholder="DROP TABLE I..." />
+            <marker date="1427806294770" expanded="true" signature="936:1143" placeholder="CREATE TABLE..IF..." />
+            <marker date="1427806294770" expanded="true" signature="1176:1258" placeholder="CREATE TABLE..IF..." />
+            <marker date="1427806294770" expanded="true" signature="1297:1435" placeholder="CREATE TABLE..IF..." />
+            <marker date="1427806294770" expanded="true" signature="2046:2141" placeholder="INSERT INTO ..." />
+            <marker date="1427806294770" expanded="true" signature="3487:3547" placeholder="INSERT INTO ..." />
+            <marker date="1427806294770" expanded="true" signature="4705:4747" placeholder="SELECT * fro..Etudiant..." />
+            <marker date="1427806294770" expanded="true" signature="5790:5810" placeholder="SELECT nomue..UE..." />
+            <marker date="1427806294770" expanded="true" signature="6573:6788" placeholder="SELECT disti..ue..." />
+            <marker date="1427806294770" expanded="true" signature="7710:7747" placeholder="INSERT INTO ..." />
+            <marker date="1427806294770" expanded="true" signature="8439:8488" placeholder="SELECT idue,..lien..." />
+            <marker date="1427806294770" expanded="true" signature="9640:9668" placeholder="SELECT * fro..ue..." />
+            <marker date="1427806294770" expanded="true" signature="10576:10818" placeholder="SELECT e.num..etudiant..." />
           </folding>
         </state>
       </provider>
@@ -915,22 +933,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sqlite/SQLiteJDBC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="245" max-vertical-offset="720">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gestion/GestionFichierExcelWithPoi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="4392">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rt.jar!/java/util/ArrayList.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3511111" vertical-offset="10372" max-vertical-offset="13176">
@@ -946,18 +948,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gestion/GestionFichierExcelWithJxl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3586" max-vertical-offset="4320">
-          <caret line="238" column="0" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gestion/FenetrePrincipale.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2088" max-vertical-offset="7272">
-          <caret line="147" column="35" selection-start-line="147" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+        <state vertical-scroll-proportion="-2.7115386" vertical-offset="2361" max-vertical-offset="7272">
+          <caret line="148" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#7425#7512#0" expanded="true" />
@@ -965,39 +959,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sqlite/SQLiteJDBC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18947369" vertical-offset="0" max-vertical-offset="720">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sqlite/GestionBD.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3035" max-vertical-offset="7470">
-          <caret line="189" column="40" selection-start-line="189" selection-start-column="40" selection-end-line="189" selection-end-column="40" />
+        <state vertical-scroll-proportion="-1.1290323" vertical-offset="1747" max-vertical-offset="7542">
+          <caret line="110" column="56" selection-start-line="110" selection-start-column="38" selection-end-line="110" selection-end-column="56" />
           <folding>
-            <marker date="1427804626674" expanded="true" signature="730:759" placeholder="DROP TABLE I..." />
-            <marker date="1427804626674" expanded="true" signature="792:817" placeholder="DROP TABLE I..." />
-            <marker date="1427804626674" expanded="true" signature="850:873" placeholder="DROP TABLE I..." />
-            <marker date="1427804626674" expanded="true" signature="913:1120" placeholder="CREATE TABLE..IF..." />
-            <marker date="1427804626674" expanded="true" signature="1153:1235" placeholder="CREATE TABLE..IF..." />
-            <marker date="1427804626674" expanded="true" signature="1274:1412" placeholder="CREATE TABLE..IF..." />
-            <marker date="1427804626674" expanded="true" signature="1937:2032" placeholder="INSERT INTO ..." />
-            <marker date="1427804626674" expanded="true" signature="3023:3083" placeholder="INSERT INTO ..." />
-            <marker date="1427804626674" expanded="true" signature="4021:4063" placeholder="SELECT * fro..Etudiant..." />
-            <marker date="1427804626674" expanded="true" signature="5106:5126" placeholder="SELECT nomue..UE..." />
-            <marker date="1427804626674" expanded="true" signature="5889:6104" placeholder="SELECT disti..ue..." />
-            <marker date="1427804626674" expanded="true" signature="7026:7063" placeholder="INSERT INTO ..." />
-            <marker date="1427804626674" expanded="true" signature="7755:7804" placeholder="SELECT idue,..lien..." />
-            <marker date="1427804626674" expanded="true" signature="8956:8984" placeholder="SELECT * fro..ue..." />
-            <marker date="1427804626674" expanded="true" signature="9892:10134" placeholder="SELECT e.num..etudiant..." />
+            <marker date="1427806294770" expanded="true" signature="753:782" placeholder="DROP TABLE I..." />
+            <marker date="1427806294770" expanded="true" signature="815:840" placeholder="DROP TABLE I..." />
+            <marker date="1427806294770" expanded="true" signature="873:896" placeholder="DROP TABLE I..." />
+            <marker date="1427806294770" expanded="true" signature="936:1143" placeholder="CREATE TABLE..IF..." />
+            <marker date="1427806294770" expanded="true" signature="1176:1258" placeholder="CREATE TABLE..IF..." />
+            <marker date="1427806294770" expanded="true" signature="1297:1435" placeholder="CREATE TABLE..IF..." />
+            <marker date="1427806294770" expanded="true" signature="2046:2141" placeholder="INSERT INTO ..." />
+            <marker date="1427806294770" expanded="true" signature="3487:3547" placeholder="INSERT INTO ..." />
+            <marker date="1427806294770" expanded="true" signature="4705:4747" placeholder="SELECT * fro..Etudiant..." />
+            <marker date="1427806294770" expanded="true" signature="5790:5810" placeholder="SELECT nomue..UE..." />
+            <marker date="1427806294770" expanded="true" signature="6573:6788" placeholder="SELECT disti..ue..." />
+            <marker date="1427806294770" expanded="true" signature="7710:7747" placeholder="INSERT INTO ..." />
+            <marker date="1427806294770" expanded="true" signature="8439:8488" placeholder="SELECT idue,..lien..." />
+            <marker date="1427806294770" expanded="true" signature="9640:9668" placeholder="SELECT * fro..ue..." />
+            <marker date="1427806294770" expanded="true" signature="10576:10818" placeholder="SELECT e.num..etudiant..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gestion/GestionFichierExcelWithPoi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-29.161291" vertical-offset="1328" max-vertical-offset="4374">
+          <caret line="124" column="41" selection-start-line="124" selection-start-column="41" selection-end-line="124" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gestion/WriteExcel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5406032" vertical-offset="3169" max-vertical-offset="6264">
+        <state vertical-scroll-proportion="78.41936" vertical-offset="5833" max-vertical-offset="6264">
           <caret line="189" column="14" selection-start-line="189" selection-start-column="14" selection-end-line="189" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#528#529#0" expanded="true" />
             <element signature="e#562#563#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gestion/GestionFichierExcelWithJxl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1081082" vertical-offset="3876" max-vertical-offset="4428">
+          <caret line="218" column="13" selection-start-line="218" selection-start-column="13" selection-end-line="218" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

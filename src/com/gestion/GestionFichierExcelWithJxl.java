@@ -96,16 +96,15 @@ public class GestionFichierExcelWithJxl {
 			} else {
 				e.setRedoublant(false);
 			}
-
-			try {
-				GestionBD.ajouterEtudiant(e);
-			} catch (ClassNotFoundException | SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
 			lstEtudiant.add(e);
 		}
+
+        try {
+            GestionBD.ajouterEtudiant(lstEtudiant);
+        } catch (ClassNotFoundException | SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
 		//System.out.println(lstEtudiant.toString());
 
 		// Initialiosation des liste des liste d'UEs pour chaque etudiants
@@ -159,13 +158,19 @@ public class GestionFichierExcelWithJxl {
 						break;
 					}
 				}
-			} 
-		}
-	
+			}
 
-		//Affichage de la liste d'étudiants
-		for (int i = 0; i < lstEtudiant.size(); i++) {
-			 //System.out.println(lstEtudiant.get(i).toString());
+		}
+
+        try {
+            GestionBD.ajouterLien(lstEtudiant);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        //Affichage de la liste d'étudiants
+		/*for (int i = 0; i < lstEtudiant.size(); i++) {
 			try {
 				GestionBD.ajouterLien(lstEtudiant.get(i));
 			} catch (ClassNotFoundException | SQLException e) {
@@ -173,6 +178,7 @@ public class GestionFichierExcelWithJxl {
 				e.printStackTrace();
 			}
 		}
+		*/
 	}
 
 	public static void dataBaseCreation() throws ClassNotFoundException,
@@ -217,7 +223,7 @@ public class GestionFichierExcelWithJxl {
 			
 			dataBaseCreation();
 			ouvertureFichier("results2.xls");
-			final ArrayList<Etudiant> listeEtu  = GestionBD.recupererEtudiants();
+			/*final ArrayList<Etudiant> listeEtu  = GestionBD.recupererEtudiants();
 
 			TreeMap<String, ArrayList<Etudiant>> listEtuByUE = GestionBD.getEtudiantsPerUE(listeEtu);
 
@@ -249,7 +255,7 @@ public class GestionFichierExcelWithJxl {
             } catch (SQLException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
-            }
+            }*/
 		
 				
 		} catch (IOException | ClassNotFoundException | SQLException | OldExcelFormatException e) {
