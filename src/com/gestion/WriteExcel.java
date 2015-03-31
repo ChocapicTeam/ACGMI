@@ -5,11 +5,12 @@ import com.sqlite.GestionBD;
 import jxl.Cell;
 import jxl.CellView;
 import jxl.write.*;
-import jxl.write.biff.RowsExceededException;
+import sun.reflect.generics.tree.Tree;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -28,13 +29,17 @@ public void setOutputFile(String inputFile) {
   public void write(WritableWorkbook workbook, ArrayList<Etudiant> listeEtu, TreeMap<String, ArrayList<Etudiant>> listEtuByUE) throws IOException, WriteException, ClassNotFoundException, SQLException {
     
     workbook.createSheet("Etudiants", 0);
+      workbook.createSheet("nb", 1);
     WritableSheet sheet1 = workbook.getSheet(0);
+
     createLabelSheet1(sheet1);
-    createContentSheet1(sheet1, listeEtu);
+      createContentSheet1(sheet1, listeEtu);
       WritableSheet sheet3 = workbook.getSheet(1);
-      //createLabelSheet3(sheet3, listeEtu);
-    
-    int i = 2;
+      //createLabelSheet3(sheet3, listEtuByUE);
+      createContentSheet3(sheet3);
+
+
+      int i = 2;
     for (Entry<String, ArrayList<Etudiant>> entry : listEtuByUE.entrySet()) {
     	workbook.createSheet(entry.getKey(), i);
     	WritableSheet sheetUE = workbook.getSheet(i);
@@ -268,8 +273,15 @@ private void sheetAutoFitColumns(WritableSheet sheet) {
           }
       }
 
-    private void createContentSheet3(WritableSheet sheet, TreeMap<String, ArrayList<Etudiant>> listeEtuByUE ) throws WriteException, SQLException, ClassNotFoundException {
-
+    private void createContentSheet3(WritableSheet sheet/*, TreeMap<String, Integer> nbEtudiantAvecUeNonValidePerUE*/) throws WriteException, SQLException, ClassNotFoundException {
+        List<String> listeUE = GestionBD.recupererUe();
+        HashMap<String, Integer> listeNbEtuNoValideByUE = GestionBD.recupererNombreEtuPerUe();
+        int i = 0;
+        for (Entry<String,Integer> entry : listeNbEtuNoValideByUE.entrySet()) {
+            addLabel(sheet, 0, i, entry.getKey());
+            addCaption(sheet, 1, i, entry.getValue().toString());
+            i++;
+        }
 
     }
 

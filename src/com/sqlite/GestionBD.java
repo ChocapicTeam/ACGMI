@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TreeMap;
 
 import com.gestion.Etudiant;
@@ -86,7 +87,7 @@ public class GestionBD {
 						.prepareStatement("INSERT INTO lien(numetu,idue, type, valide) VALUES (?,?,?,?)");
 				statementLien.setInt(1, Integer.parseInt(etudiant.getNumero()));
 				statementLien.setString(2, etudiant.getListeUE().get(i)
-						.getNom());
+						.getNom().toUpperCase());
 				statementLien.setString(3, etudiant.getListeUE().get(i)
 						.getType().toString());
 				statementLien.setBoolean(4, etudiant.getListeUE().get(i)
@@ -165,6 +166,32 @@ public class GestionBD {
         }
         return listeUe;
 
+    }
+
+    public static HashMap<String, Integer> recupererNombreEtuPerUe ()
+            throws SQLException, ClassNotFoundException {
+        HashMap<String, Integer> res = new HashMap<>();
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection = (Connection) SQLiteJDBC.getConnexion();
+            statement = connection.createStatement();
+            // execute select SQL stetement
+            ResultSet rs = statement
+                    .executeQuery("SELECT distinct ue.nomue, count (lien.idue) " +
+                            "as nb from ue left join lien on ue.nomue = lien.idue " +
+                            "and lien.valide = 0 group by ue.nomue order by ue.id");
+            while (rs.next()) {
+                res.put(rs.getString("nomue"), rs.getInt("nb"));
+            }
+        }
+        finally {
+            SQLiteJDBC.close(statement);
+            SQLiteJDBC.close(connection);
+        }
+
+        return res;
     }
 
 
