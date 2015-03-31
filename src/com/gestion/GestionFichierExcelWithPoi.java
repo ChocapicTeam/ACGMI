@@ -74,16 +74,14 @@ public class GestionFichierExcelWithPoi {
 			} else {
 				e.setRedoublant(false);
 			}
-
-			try {
-				GestionBD.ajouterEtudiant(e);
-			} catch (ClassNotFoundException | SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
 			lstEtudiant.add(e);
 		}
+        try {
+            GestionBD.ajouterEtudiant(lstEtudiant);
+        } catch (ClassNotFoundException | SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
 		// Initialiosation des liste des liste d'UEs pour chaque etudiants
 		for (int i = 1; i < lastRowNum; i++) {
 			row = sh.getRow(i);
@@ -122,8 +120,9 @@ public class GestionFichierExcelWithPoi {
 					break;
 				}
 			}
-			GestionBD.ajouterLien(pers);
+			//GestionBD.ajouterLien(pers);
 		}
+        GestionBD.ajouterLien(lstEtudiant);
 		// Affichage de la liste d'étudiants
 		//		for (int i = 0; i < lstEtudiant.size(); i++) {
 		//			 //System.out.println(lstEtudiant.get(i).toString());

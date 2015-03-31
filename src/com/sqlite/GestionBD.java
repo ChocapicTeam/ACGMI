@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.TreeMap;
 
 import com.gestion.Etudiant;
@@ -47,7 +49,7 @@ public class GestionBD {
 		}
 	}
 
-	public static void ajouterEtudiant(Etudiant etudiant) throws SQLException,
+	public static void ajouterEtudiant(List<Etudiant> liteEtu) throws SQLException,
 			ClassNotFoundException {
 
 		Connection connection = null;
@@ -55,45 +57,49 @@ public class GestionBD {
 		try {
 			// Ajout d'un etudiant dans la base de donnée
 			connection = (Connection) SQLiteJDBC.getConnexion();
-			statementEtudiant = (PreparedStatement) connection
-					.prepareStatement("INSERT INTO etudiant(numeroEtudiant,nom,prenom,mail,specialite,redoublant) VALUES (?,?,?,?,?,?)");
-			statementEtudiant.setInt(1, Integer.parseInt(etudiant.getNumero()));
-			statementEtudiant.setString(2, etudiant.getNom());
-			statementEtudiant.setString(3, etudiant.getPrenom());
-			statementEtudiant.setString(4, etudiant.getMailPerso());
-			statementEtudiant.setString(5, etudiant.getSpecialite());
-			if (etudiant.isRedoublant()) {
-				statementEtudiant.setInt(6, 1);
-			} else {
-				statementEtudiant.setInt(6, 0);
-			}
-			statementEtudiant.executeUpdate();
+            for(int i=0; i<liteEtu.size();i++) {
+                statementEtudiant = (PreparedStatement) connection
+                        .prepareStatement("INSERT INTO etudiant(numeroEtudiant,nom,prenom,mail,specialite,redoublant) VALUES (?,?,?,?,?,?)");
+                statementEtudiant.setInt(1, Integer.parseInt(liteEtu.get(i).getNumero()));
+                statementEtudiant.setString(2, liteEtu.get(i).getNom());
+                statementEtudiant.setString(3, liteEtu.get(i).getPrenom());
+                statementEtudiant.setString(4, liteEtu.get(i).getMailPerso());
+                statementEtudiant.setString(5, liteEtu.get(i).getSpecialite());
+                if (liteEtu.get(i).isRedoublant()) {
+                    statementEtudiant.setInt(6, 1);
+                } else {
+                    statementEtudiant.setInt(6, 0);
+                }
+                statementEtudiant.executeUpdate();
+            }
 		} finally {
 			SQLiteJDBC.close(statementEtudiant);
 			SQLiteJDBC.close(connection);
 		}
 	}
 
-	public static void ajouterLien(Etudiant etudiant) throws SQLException,
+	public static void ajouterLien(List<Etudiant> listeEtudiant) throws SQLException,
 			ClassNotFoundException {
 		Connection connection = null;
 		PreparedStatement statementLien = null;
 		try {
-			// Ajout dans la table lien (etudiant / nom Ue )
-			for (int i = 0; i < etudiant.getListeUE().size(); i++) {
-				connection = (Connection) SQLiteJDBC.getConnexion();
-				statementLien = (PreparedStatement) connection
-						.prepareStatement("INSERT INTO lien(numetu,idue, type, valide) VALUES (?,?,?,?)");
-				statementLien.setInt(1, Integer.parseInt(etudiant.getNumero()));
-				statementLien.setString(2, etudiant.getListeUE().get(i)
-						.getNom());
-				statementLien.setString(3, etudiant.getListeUE().get(i)
-						.getType().toString());
-				statementLien.setBoolean(4, etudiant.getListeUE().get(i)
-						.isValide());
-				statementLien.executeUpdate();
-			}
+                connection = (Connection) SQLiteJDBC.getConnexion();
+            for (int j=0; j<listeEtudiant.size();j++) {
+                // Ajout dans la table lien (etudiant / nom Ue )
+                for (int i = 0; i < listeEtudiant.get(j).getListeUE().size(); i++) {
 
+                    statementLien = (PreparedStatement) connection
+                            .prepareStatement("INSERT INTO lien(numetu,idue, type, valide) VALUES (?,?,?,?)");
+                    statementLien.setInt(1, Integer.parseInt(listeEtudiant.get(j).getNumero()));
+                    statementLien.setString(2, listeEtudiant.get(j).getListeUE().get(i)
+                            .getNom().toUpperCase());
+                    statementLien.setString(3, listeEtudiant.get(j).getListeUE().get(i)
+                            .getType().toString());
+                    statementLien.setBoolean(4, listeEtudiant.get(j).getListeUE().get(i)
+                            .isValide());
+                    statementLien.executeUpdate();
+                }
+            }
 		} finally {
 			SQLiteJDBC.close(statementLien);
 			SQLiteJDBC.close(connection);
@@ -143,11 +149,11 @@ public class GestionBD {
 	}
 
 
-    public static ArrayList<Etudiant> recupererUe() throws SQLException,
+    public static ArrayList<String> recupererUe() throws SQLException,
             ClassNotFoundException {
         Connection connection = null;
         Statement statement = null;
-        ArrayList<UE> listeUe = new ArrayList<>();
+        ArrayList<String> listeUe = new ArrayList<>();
 
         try {
             connection = (Connection) SQLiteJDBC.getConnexion();
@@ -155,32 +161,42 @@ public class GestionBD {
             // execute select SQL stetement
             ResultSet rs = statement
                     .executeQuery("SELECT nomue from UE");
-
             while (rs.next()) {
-                Etudiant e = new Etudiant();
-                e.setNom(rs.getString("nom"));
-                e.setPrenom(rs.getString("prenom"));
-                e.setMailPerso(rs.getString("mail"));
-                e.setNumero(String.valueOf(rs.getInt("numeroEtudiant")));
-
-                e.setSpecialite(rs.getString("specialite"));
-                if (rs.getInt("redoublant") == 0) {
-                    e.setRedoublant(false);
-                } else {
-                    e.setRedoublant(true);
-                }
-                listeEtudiant.add(e);
+                listeUe.add(rs.getString("nomue"));
             }
-
         }
+        finally {
+            SQLiteJDBC.close(statement);
+            SQLiteJDBC.close(connection);
+        }
+        return listeUe;
 
+    }
+
+    public static HashMap<String, Integer> recupererNombreEtuPerUe ()
+            throws SQLException, ClassNotFoundException {
+        HashMap<String, Integer> res = new HashMap<>();
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection = (Connection) SQLiteJDBC.getConnexion();
+            statement = connection.createStatement();
+            // execute select SQL stetement
+            ResultSet rs = statement
+                    .executeQuery("SELECT distinct ue.nomue, count (lien.idue) " +
+                            "as nb from ue left join lien on ue.nomue = lien.idue " +
+                            "and lien.valide = 0 group by ue.nomue order by ue.id");
+            while (rs.next()) {
+                res.put(rs.getString("nomue"), rs.getInt("nb"));
+            }
+        }
         finally {
             SQLiteJDBC.close(statement);
             SQLiteJDBC.close(connection);
         }
 
-        return listeEtudiant;
-
+        return res;
     }
 
 

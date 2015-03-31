@@ -5,11 +5,12 @@ import com.sqlite.GestionBD;
 import jxl.Cell;
 import jxl.CellView;
 import jxl.write.*;
-import jxl.write.biff.RowsExceededException;
+import sun.reflect.generics.tree.Tree;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -28,13 +29,17 @@ public void setOutputFile(String inputFile) {
   public void write(WritableWorkbook workbook, ArrayList<Etudiant> listeEtu, TreeMap<String, ArrayList<Etudiant>> listEtuByUE) throws IOException, WriteException, ClassNotFoundException, SQLException {
     
     workbook.createSheet("Etudiants", 0);
+      workbook.createSheet("nb", 1);
     WritableSheet sheet1 = workbook.getSheet(0);
+
     createLabelSheet1(sheet1);
-    createContentSheet1(sheet1, listeEtu);
+      createContentSheet1(sheet1, listeEtu);
       WritableSheet sheet3 = workbook.getSheet(1);
-      createLabelSheet3(sheet3, listeEtu);
-    
-    int i = 2;
+      //createLabelSheet3(sheet3, listEtuByUE);
+      createContentSheet3(sheet3);
+
+
+      int i = 2;
     for (Entry<String, ArrayList<Etudiant>> entry : listEtuByUE.entrySet()) {
     	workbook.createSheet(entry.getKey(), i);
     	WritableSheet sheetUE = workbook.getSheet(i);
@@ -268,53 +273,16 @@ private void sheetAutoFitColumns(WritableSheet sheet) {
           }
       }
 
-    private void createContentSheet3(WritableSheet sheet, List<Etudiant> listeEtu) throws WriteException, SQLException, ClassNotFoundException {
-
-
-        ArrayList<String> listeUE = new ArrayList<>();
-        listeUE = GestionBD.get
-        TreeMap<String, Integer> nbEtuInscits = new TreeMap<>();
-        for (Entry<String, ArrayList<Etudiant>> entry : listEtuByUE.entrySet()) {
-            listeUE.add(entry.getKey());
-        }
-
-        for (Entry<String, ArrayList<Etudiant>> entry : listEtuByUE.entrySet()) {
-
-            String numero = etu.getNumero();
-            listeUE = GestionBD.getUeEtudiant(numero);
-            for (UE ue : listeUE) {
-                if (ue.getType().equals(UE.types.IMPOSEE))
-                    listeImpo.add(ue);
-                else if (ue.getType().equals(UE.types.COMMUN))
-                    listeCommun.add(ue);
-                else
-                    listeChoix.add(ue);
-            }
-
-            addLabel(sheet, 0, i, etu.getNom());
-            addLabel(sheet, 1, i, etu.getPrenom());
-            addLabel(sheet, 2, i, etu.getMailPerso());
-            addLabel(sheet, 3, i, etu.getSpecialite());
-            addLabel(sheet, 4, i, etu.isRedoublant() ? "Oui" : "Non");
-            addLabel(sheet, 5, i, etu.getNumero());
-
-            addLabel(sheet, 6, i, listeCommun.get(0).isValide() ? listeCommun.get(0).getNom() + " admis" : listeCommun.get(0).getNom());
-            addLabel(sheet, 7, i, listeCommun.get(1).isValide() ? listeCommun.get(1).getNom() + " admis" : listeCommun.get(1).getNom());
-            addLabel(sheet, 8, i, listeImpo.get(0).isValide() ? listeImpo.get(0).getNom() + " admis" : listeImpo.get(0).getNom());
-            addLabel(sheet, 9, i, listeImpo.get(1).isValide() ? listeImpo.get(1).getNom() + " admis" : listeImpo.get(1).getNom());
-            addLabel(sheet, 10, i, listeImpo.get(2).isValide() ? listeImpo.get(2).getNom() + " admis" : listeImpo.get(2).getNom());
-            addLabel(sheet, 11, i, listeImpo.get(3).isValide() ? listeImpo.get(3).getNom() + " admis" : listeImpo.get(3).getNom());
-            addLabel(sheet, 12, i, listeChoix.get(0).isValide() ? listeChoix.get(0).getNom() + " admis" : listeChoix.get(0).getNom());
-            addLabel(sheet, 13, i, listeChoix.get(1).isValide() ? listeChoix.get(1).getNom() + " admis" : listeChoix.get(1).getNom());
-            addLabel(sheet, 14, i, listeChoix.get(2).isValide() ? listeChoix.get(2).getNom() + " admis" : listeChoix.get(2).getNom());
-            System.out.println(etu.toString());
-            addLabel(sheet, 15, i, listeChoix.get(3).isValide() ? listeChoix.get(3).getNom() + " admis" : listeChoix.get(3).getNom());
-
-            listeImpo.clear();
-            listeChoix.clear();
-            listeCommun.clear();
+    private void createContentSheet3(WritableSheet sheet/*, TreeMap<String, Integer> nbEtudiantAvecUeNonValidePerUE*/) throws WriteException, SQLException, ClassNotFoundException {
+        List<String> listeUE = GestionBD.recupererUe();
+        HashMap<String, Integer> listeNbEtuNoValideByUE = GestionBD.recupererNombreEtuPerUe();
+        int i = 0;
+        for (Entry<String,Integer> entry : listeNbEtuNoValideByUE.entrySet()) {
+            addLabel(sheet, 0, i, entry.getKey());
+            addCaption(sheet, 1, i, entry.getValue().toString());
             i++;
         }
+
     }
 
   
