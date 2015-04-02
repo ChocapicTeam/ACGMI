@@ -44,6 +44,7 @@ public class FenetreStatistique extends JFrame {
 	 */
 	public FenetreStatistique() {
 		initComponents();
+
 	}
 
 	/**

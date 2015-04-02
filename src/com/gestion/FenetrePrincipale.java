@@ -1,9 +1,6 @@
 package com.gestion;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,22 +8,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.TreeMap;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -87,7 +69,7 @@ public class FenetrePrincipale extends JFrame {
 		jMenu4 = new JMenu();
 		importer = new JMenuItem("Importer");
 		exporter = new JMenuItem("Exporter");
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 20)); // NOI18N
 		jLabel1.setText("  LOGICIEL ACGM  ");
@@ -222,10 +204,27 @@ public class FenetrePrincipale extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				FenetreStatistique fstat = new FenetreStatistique();
-				fstat.show();
+				//fstat.show();
+                fstat.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+                fstat.setVisible(true);
+
 
 			}
 		});
+
+
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                int confirmed = JOptionPane.showConfirmDialog(FenetrePrincipale.this,
+                        "Voulez-vous quitter l'applicaiton ? ", "Message",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirmed == JOptionPane.YES_OPTION) {
+                   System.exit(0);
+                }
+            }
+        });
 
 		importer.addActionListener(new ActionListener() {
 			@Override
