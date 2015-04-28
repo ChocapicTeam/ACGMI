@@ -222,7 +222,7 @@ public class GestionFichierExcelWithJxl {
 			//GestionFichierExcelWithPoi.ouvertureFichier("results2.xls");
 			
 			dataBaseCreation();
-			ouvertureFichier("results3.xls");
+			ouvertureFichier("JeuDeTests.xls");
 			final ArrayList<Etudiant> listeEtu  = GestionBD.recupererEtudiants();
 
 			TreeMap<String, ArrayList<Etudiant>> listEtuByUE = GestionBD.getEtudiantsPerUE(listeEtu);

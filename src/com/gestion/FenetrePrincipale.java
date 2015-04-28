@@ -58,7 +58,7 @@ public class FenetrePrincipale extends JFrame {
 		panelOption1 = new JPanel();
 		boutonAjout = new JButton();
 		boutonStat = new JButton();
-		panelOption2 = new JPanel();
+		//panelOption2 = new JPanel();
 		boutonExportExcel = new JButton();
 		boutonExportPdf = new JButton();
 		panelTable = new JPanel();
@@ -72,7 +72,7 @@ public class FenetrePrincipale extends JFrame {
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 20)); // NOI18N
-		jLabel1.setText("  LOGICIEL ACGM  ");
+		jLabel1.setText("  ACGMI  ");
 		jLabel1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 		panelTitre.add(jLabel1);
 
@@ -82,11 +82,11 @@ public class FenetrePrincipale extends JFrame {
 
 		panelOptions.setLayout(new BoxLayout(panelOptions, BoxLayout.Y_AXIS));
 
-		panelOption1.setBorder(BorderFactory.createTitledBorder("Option 1"));
+		panelOption1.setBorder(BorderFactory.createTitledBorder("  Actions"));
 		panelOption1.setLayout(new BoxLayout(panelOption1, BoxLayout.Y_AXIS));
 
-		boutonAjout.setText("Ajouter Etudiant");
-		panelOption1.add(boutonAjout);
+		//boutonAjout.setText("Ajouter Etudiant");
+		//panelOption1.add(boutonAjout);
 
 		boutonStat.setText("Statistiques");
 		boutonStat.addActionListener(new java.awt.event.ActionListener() {
@@ -94,12 +94,13 @@ public class FenetrePrincipale extends JFrame {
 				boutonStatActionPerformed(evt);
 			}
 		});
+
 		panelOption1.add(boutonStat);
 
 		panelOptions.add(panelOption1);
 
-		panelOption2.setBorder(BorderFactory.createTitledBorder("Option 2"));
-		panelOption2.setLayout(new BoxLayout(panelOption2, BoxLayout.Y_AXIS));
+		//panelOption2.setBorder(BorderFactory.createTitledBorder("Option 2"));
+		//panelOption2.setLayout(new BoxLayout(panelOption2, BoxLayout.Y_AXIS));
 
 		boutonExportExcel.setText("Exporter Excel");
 
@@ -167,13 +168,13 @@ public class FenetrePrincipale extends JFrame {
 
 		}); 
 
-		panelOption2.add(boutonExportExcel);
+		panelOption1.add(boutonExportExcel);
 
-		boutonExportPdf.setText("Exporter PDF");
+		//boutonExportPdf.setText("Exporter PDF");
 		
-		panelOption2.add(boutonExportPdf);
+		//panelOption2.add(boutonExportPdf);
 
-		panelOptions.add(panelOption2);
+		//panelOptions.add(panelOption2);
 
 		panelCentre.add(panelOptions);
 
